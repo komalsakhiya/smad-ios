@@ -1,0 +1,98 @@
+<ion-header [translucent]="true" mode="md">
+  <!-- <app-header [title]="'CASHMASH Vouchers'"></app-header> -->
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Redeem Coins</ion-title>
+    <ion-button slot="end" class="my-voucher" fill="outline" (click)="openMyVochers()">
+      My Vouchers
+    </ion-button>
+    <ion-icon name="help-circle" style="font-size: 25px;" class="mr-2" slot="end" routerLink="/tour-guide/9">
+    </ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="this.success == 1">
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let image of imgArr">
+        <div class="slider-image-section">
+          <img [src]="image.sliderImage">
+        </div>
+      </ion-slide>
+    </ion-slides>
+    <div class="d-flex align-items-center mb-2">
+      <div *ngIf="this.categoryNameRecd != 'Category'" class="cat-name d-flex align-items-center">
+        <ion-icon name="list-outline"></ion-icon>
+        <p class="mb-0 ml-2">{{this.categoryNameRecd}}</p>
+      </div>
+      <ion-button slot="end" class="book-new ml-auto" fill="outline" (click)="clearFilter()" *ngIf="isFilterd">
+        Clear Filter
+      </ion-button>
+    </div>
+  </div>
+  <div class="px-3">
+    <ion-card *ngFor="let voucher of vouchers" class="mx-0">
+      <div style="position: relative;">
+        <div class="image-section">
+          <img [src]="voucher.mainImage">
+        </div>
+        <p class="paused" *ngIf="voucher.ishotFlashing == 1">Hot Flashing</p>
+        <p class="mb-0 price-text p-2 rounded">₹ {{voucher.denomination}}</p>
+        <div class="content-section">
+          <p class="mb-0 pb-1">Redeem against <strong style="font-weight: 900;"> {{voucher.points}} CashMash <span
+                *ngIf="voucher.points > 1">Coins</span><span *ngIf="voucher.points <= 1">Coin</span></strong><br>
+            <img class="coin-img" src="../../../assets/images/coin.png">
+            {{voucher.punchLine}}
+          </p>
+          <div class="d-flex align-items-center px-2">
+            <ion-button fill="outline" class="text-white" style="margin: 0 auto;"
+              (click)="redeemVoucher(voucher.voucherId)" [ngClass]="{'redeem-btn':voucher.balance_qty > 10}"
+              [attr.disabled]="(cmPartnerId == voucher.cmPartnerId || voucher.purchased_qty >= voucher.maxLimit) ? '' : null">
+              Redeem</ion-button>
+            <i class="fa fa-gavel ml-auto" aria-hidden="true" style="font-size: 25px;" *ngIf="voucher.balance_qty > 10"
+              (click)="openAddress('Term & Condition',voucher.tnc)"></i>
+          </div>
+        </div>
+      </div>
+      <ion-card-content *ngIf="voucher.balance_qty && voucher.balance_qty < 11" class="p-2">
+        <ion-row>
+          <ion-col size="9">
+            <p *ngIf="voucher.balance_qty && voucher.balance_qty < 11" class="mb-0 mt-1 few-left">Only Few Left:
+              {{voucher.balance_qty}}</p>
+          </ion-col>
+          <ion-col size="3">
+            <i class="fa fa-gavel float-right" aria-hidden="true" style="font-size: 25px;"
+              (click)="openAddress('Term & Condition',voucher.tnc)"></i>
+          </ion-col>
+        </ion-row>
+        <hr class="m-0" *ngIf="voucher.balance_qty && voucher.balance_qty < 11">
+        <ion-row class="adress">
+          <ion-col size="8">
+            <p>{{voucher.branchName}}</p>
+          </ion-col>
+          <ion-col size="4">
+            <p class="float-right">{{voucher.dist_km}}km</p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div text-center *ngIf="this.success !== 1" class="no-data">
+    <ion-label>No Vouchers</ion-label>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="filterCategory()" style="--background: {{this.pointcolor}};">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="plus">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button class="cat1" (click)="filterCategory()">
+        <ion-icon name="list-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab> -->
+</ion-content>

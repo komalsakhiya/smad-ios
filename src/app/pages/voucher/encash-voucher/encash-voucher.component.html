@@ -1,0 +1,25 @@
+<ion-header [translucent]="true" mode="md">
+  <!-- <app-header [title]="'Encash Voucher'"></app-header> -->
+  <ion-toolbar>
+    <ion-back-button slot="start" ></ion-back-button>
+    <ion-title>Encash Vouchers</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div text-center *ngIf="!vouchers.length" class="no-data">
+    <ion-label>No Vouchers</ion-label>
+  </div>
+  <div *ngIf="vouchers.length">
+    <ion-card *ngFor="let voucher of vouchers" [ngStyle]="{'opacity':'1'}">
+      <div style="position: relative;">
+        <div class="image-section">
+          <img [src]="voucher.image">
+        </div>
+        <div class="d-flex content-section align-items-center">
+            <p class="date-text mt-3">Valid till: {{voucher.date |date}}</p>
+            <ion-button fill="outline" class="text-white ml-auto" (click)="designChange($event)">Encash</ion-button>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

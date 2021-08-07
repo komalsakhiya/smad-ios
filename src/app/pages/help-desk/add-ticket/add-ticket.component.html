@@ -1,0 +1,43 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start" ></ion-back-button>
+    <ion-title *ngIf="this.ticketTypeArr">Add Ticket</ion-title>
+    <ion-title *ngIf="!this.ticketTypeArr">Reply</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="ticketForm">
+    <div class="form-input" *ngIf="this.ticketTypeArr && ticketTypeArr.length">
+      <ion-item>
+        <ion-label position="floating">Subject</ion-label>
+        <ion-input type="text" formControlName="subject"></ion-input>
+      </ion-item>
+      <div *ngIf="isControlHasError('subject','required')" class="invalid-feedback">
+        <span>Required field.</span>
+      </div>
+    </div>
+    <div class="form-input">
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+      <div *ngIf="isControlHasError('description','required')" class="invalid-feedback">
+        <span>Required field.</span>
+      </div>
+    </div>
+    <div class="form-input" *ngIf="this.ticketTypeArr && ticketTypeArr.length">
+      <ion-item>
+        <ion-label>Ticket Type</ion-label>
+        <ion-select formControlName="ticketTypeId">
+          <ion-select-option value="{{type.ticketTypeId}}" *ngFor="let type of ticketTypeArr">{{type.ticketType}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="isControlHasError('ticketTypeId','required')" class="invalid-feedback">
+        <span>Required field.</span>
+      </div>
+    </div>
+    <div class="action-button py-3">
+      <ion-button size="large" class="login-button" (click)="addTicket(ticketForm)">{{ticketTypeArr?'Add Ticket':'Send Reply'}}</ion-button>
+    </div>
+  </form>
+</ion-content>

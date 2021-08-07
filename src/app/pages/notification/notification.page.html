@@ -1,0 +1,46 @@
+<ion-header mode="md">
+  <!-- <app-header [title]="'Notifications'"></app-header> -->
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Notifications</ion-title>
+    <ion-button slot="end" class="new-ticket" fill="outline" (click)="removeItem()" *ngIf="selectedItem.length">
+      <ion-icon name="trash"></ion-icon>Delete
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none" *ngIf="notificationArr.length" class="p-3">
+    <div *ngFor="let notification of notificationArr;let i =index;" class="mb-3 "
+      [ngClass]="{'overlay-card':notification.isSelected}" style="position: relative;"  (click)=!selection?toggleGroup(i):selectItem(i,notification)>
+      <ion-item class="card" ion-long-press [interval]="400"
+        (longPressed)=selectItem(i,notification)>
+        <!-- routerLink="/home/plan-option/{{notification.inquiry_id}}" -->
+        <div class=" w-100">
+          <ion-row class="text-content w-100">
+            <ion-col size="3" *ngIf="notification.notiImage !== 'noimage'">
+              <div class="left-image">
+                <img src="{{notification.notiImage}}" alt="{{notification.notiImage}}">
+              </div>
+            </ion-col>
+            <ion-col size="9">
+              <div class="main-text">
+                <p class="mb-0">{{notification.title}}</p>
+                <small>{{notification.notiDate}}</small>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-item>
+      <ion-item-options>
+        <button color="text-danger" class="btn" (click)="removeItem(notification,i)" [disabled]="isDisable">
+          Delete
+        </button>
+      </ion-item-options>
+    </div>
+
+  </ion-list>
+  <div text-center *ngIf="!notificationArr.length" class="no-data">
+    <ion-label>No Notifications</ion-label>
+  </div>
+</ion-content>

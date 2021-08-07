@@ -1,0 +1,108 @@
+<ion-header [translucent]="true" mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <img src="assets/images/logo.png" class="header-img" slot="start">
+    <img src='assets/images/text-logo.png' class="text-center text-icon" slot="start">
+    <ion-buttons slot="end" class="mr-2 location-area">
+      <ion-icon name="location"></ion-icon><span>{{areaname}}</span>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="main-ads-card">
+  <div text-center *ngIf="!loading  && this.success !== 1" class="no-data p-3">
+    <!-- <ion-label>No Ads</ion-label> -->
+    <img src="assets/images/no-ads.png">
+  </div>
+
+  <div *ngIf="this.success === 1" class="px-1 py-2">
+    <div class="d-flex align-items-center mb-2">
+      <div *ngIf="this.categoryNameRecd != 'Category'" class="cat-name d-flex align-items-center">
+        <ion-icon name="list-outline"></ion-icon>
+        <p class="mb-0 ml-2">{{this.categoryNameRecd}}</p>
+      </div>
+      <ion-button slot="end" class="book-new ml-auto" fill="outline" (click)="clearFilter()" *ngIf="isFilterd">
+        Clear Filter
+      </ion-button>
+    </div>
+    <div class="row m-0">
+      <div class="col-4 px-1 all-ads" *ngFor="let item of animateItems">
+        <ion-card class="m-0" (click)="navigatetoDetails(item)">
+          <div class="image-section">
+            <img [src]="item.adsImage">
+          </div>
+          <div class="coin-section" *ngIf="item.points > '0'">
+            <div *ngIf="item.points == 1" class="d-flex justify-content-end">
+              <img src="assets/images/coin.png">
+            </div>
+            <div *ngIf="item.points == 2" class="d-flex justify-content-end">
+              <img src="assets/images/coin.png"><img src="assets/images/coin.png">
+            </div>
+            <div *ngIf="item.points == 3" class="d-flex justify-content-end">
+              <img src="assets/images/coin.png"><img src="assets/images/coin.png"><img src="assets/images/coin.png">
+            </div>
+            <div *ngIf="item.points == 4" class="d-flex justify-content-end">
+              <img src="assets/images/coin.png"><img src="assets/images/coin.png"><img src="assets/images/coin.png">
+              <img src="assets/images/coin.png">
+            </div>
+          </div>
+        </ion-card>
+        <ion-icon name="heart" class="like-btn" *ngIf="item.fav_sts == '1'"></ion-icon>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="filter-button">
+    <ion-button (click)="openFilterAlert()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-button>
+  </div> -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)"
+    *ngIf="this.infinitescr != 0 && this.success && this.success == 1">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more Ads...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="no-fav-ads" *ngIf="isLikedDisplay && !animateItems.length">
+    <span>No Favourite Ads</span>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="this.success === 1">
+    <ion-fab-button class="plus">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button ion-fab (click)="filterPointItems(this.pointtype)" style="--background: {{this.pointcolor}};">
+        <!-- <ion-icon name="cash-outline"></ion-icon> -->
+        <img src="assets/images/coin.png" style="height: 27px;">
+      </ion-fab-button>
+      <ion-fab-button class="cat1" (click)="filterCategory()">
+        <ion-icon name="search"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="filterFavourite()">
+        <ion-icon name="heart" style="color: var(--red-color);font-size: 25px;"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <!-- Overlay img -->
+  <div class="overlay-image-section" *ngIf="openingData && isOverlayImgDisplay">
+    <ion-icon name="close-circle-outline" (click)="closeOverlayImg()"></ion-icon>
+    <img src="{{openingData.overlap_url}}">
+  </div>
+</ion-content>
+<ion-footer>
+  <div class="row m-0">
+    <div no-padding class="bottom-button text-center text-white p-2 col-8" routerLink="/smad-voucher">
+      <span>Redeem CM Coins</span><img src="assets/images/coin.png">
+    </div>
+    <div class="col-1 middle-space">
+
+    </div>
+    <div class="bottom-button text-white p-2  d-flex align-items-center justify-content-center col-3 help-btn"
+      routerLink="/tour-guide/2">
+      <ion-icon name="help-circle" style="font-size: 25px;"></ion-icon> Help
+    </div>
+  </div>
+  <!-- <span>Redeem CM Coins</span><img src="assets/images/coin.png"> -->
+</ion-footer>

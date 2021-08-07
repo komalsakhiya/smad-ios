@@ -1,0 +1,25 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>{{ 'CashMash Guide' }}</ion-title>
+    <ion-button slot="end" class="book-new" fill="outline" (click)="completeTour()" *ngIf="!mobileno">
+      Complete
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="tourData.length">
+    <ion-item *ngFor="let item of tourData" (click)="moveToSlider(item)">
+      <div class="cat-img mr-2">
+        <!-- <img src="{{item.sliderThumbnail}}"> -->
+        <!-- <img src="assets/images/logo.png"> -->
+        <img src="{{item.thumbnail}}"  onerror="this.src='assets/images/logo.png'">
+      </div>
+      {{item.sliderName}}
+    </ion-item>
+  </ion-list>
+  <div text-center *ngIf="!tourData.length" class="no-data">
+    <ion-label>No Data</ion-label>
+  </div>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header [translucent]="true" mode="md">
+  <!-- <app-header [title]="'Profile'"></app-header> -->
+  <ion-toolbar>
+    <ion-back-button slot="start" ></ion-back-button>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="editForm">
+    <div class="login-form ion-padding pt-0">
+      <div class="form-input">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-icon name="create-outline" class="edit-icon" (click)="editName(4)"></ion-icon>
+      </div>
+      <div class="form-input">
+        <ion-icon name="call-outline" ></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input type="tel" formControlName="mobile" maxlength="10"></ion-input>
+        </ion-item>
+        <ion-icon name="create-outline" class="edit-icon" (click)="editMobileno(1)"></ion-icon>
+        <div *ngIf="isControlHasError('mobile','pattern')" class="invalid-feedback">
+          <span>Please enter valid mobile number.</span>
+        </div>
+        <div *ngIf="isControlHasError('mobile','required')" class="invalid-feedback">
+          <span>Required field.</span>
+        </div>
+      </div>
+      <div class="form-input">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-icon name="create-outline" class="edit-icon" (click)="editEmail(2)" *ngIf="!isEmailOtp"></ion-icon>
+        <div *ngIf="isControlHasError('email','email')" class="invalid-feedback">
+          <span>Please enter valid email.</span>
+        </div>
+      </div>
+      <div class="form-input text-center mt-3" *ngIf="isRequestToOtp || isEmailOtp">
+        <ng-otp-input (onInputChange)="onOtpChange($event)" #ngOtpInput [config]="{length:otpLength,allowNumbersOnly:true}">
+        </ng-otp-input>
+      </div>
+    </div>
+    <div class="action-button ion-padding">
+      <!-- <ion-button size=large class="login-button" *ngIf="!isRequestToOtp" (click)="edit(editForm)">Edit</ion-button> -->
+      <ion-button size="large" class="login-button" *ngIf="isRequestToOtp" (click)="verifyOTP()">Verify OTP</ion-button>
+      <ion-button size="large" class="login-button" *ngIf="isEmailOtp" (click)="verifyOTPOfEmail()">Verify OTP</ion-button>
+
+    </div>
+  </form>
+</ion-content>

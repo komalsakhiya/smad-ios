@@ -1,0 +1,29 @@
+ion-item::part(native){
+    padding-left: 0;
+}
+ion-item{
+    --highlight-color-focused: none;
+}
+ion-label{
+    font-weight: bolder;
+    font-size: 16px;
+}
+ion-input,ion-textarea,ion-select{
+    font-size: 0.9rem;
+    --padding-start:36px;
+    --padding-top:36px;
+    color: #7b7b7b;
+}
+.action-button{
+    text-align: center;
+    ion-button{
+        height: 45px;
+        font-size: 16px;
+    }
+    .login-button{
+        width: 100%;
+        font-weight: bold;
+        --background:var(--dark-green-color);
+        text-transform: none;
+    }
+}

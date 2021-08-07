@@ -1,0 +1,73 @@
+ion-card{
+    background-color: var(--dark-green-color);
+}
+ion-toolbar{
+    background-color: #006874;
+}
+ion-segment-button { 
+    --border-color: var(--dark-green-color);
+    --color-checked: var(--dark-green-color);
+    --background-checked:var(--light-theme-color);
+    --border-radius: 4px;
+}
+.clksent{
+    color: var(--red-color);
+}
+.clkrecd{
+    color: var(--dark-green); 
+}
+.left-image {
+    height:30px;
+    width:30px;
+    overflow: hidden;
+    border-radius: 50%;
+    float: left;
+    img {
+        max-width: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        min-height: 100%;
+        object-fit: cover;
+    }
+}
+ion-item{
+    --padding-start: 13px;
+    --padding-end: 13px;
+    --padding-top: 15px;
+}
+.book-new{
+    // margin-right: 10px;
+    text-transform: none;
+    --border-radius: 25px !important;
+    --color: #fff;
+    font-size: 14px;
+    ion-icon{
+        margin-right: 5px;
+    }
+}
+.recharge-btn{
+    ion-button{
+        --background: var(--dark-green-color);
+        text-transform: none;
+    }
+}
+.button-section{
+    margin: 15px;
+    border: 1px solid var(--dark-green-color);
+    border-radius: 10px;
+    // padding: 8px 10px;
+    p{
+        text-align: center;
+        margin-bottom: 0 !important;
+    }
+}
+ion-fab-button{
+    outline: none;
+    --background:var(--theme-color);
+}
+.borders{
+    border-bottom: 1px solid var(--dark-green-color);
+}
+.right-border{
+    border-right: 1px solid var(--dark-green-color);
+}

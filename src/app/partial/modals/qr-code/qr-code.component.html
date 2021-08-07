@@ -1,0 +1,15 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-button slot="end" class="book-new" fill="outline" (click)="close()">
+      Close
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding text-center">
+  <div class="qr-section">
+    <div>
+      <p style="font-size: 17px;"> Voucher Code: {{qrData}}</p>
+      <qrcode [qrdata]="qrData" [size]="500" [level]="'L'" [cssClass]="'qr-code'" [elementType]="'img'"></qrcode>
+    </div>
+  </div>
+</ion-content>

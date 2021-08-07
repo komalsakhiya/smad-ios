@@ -1,0 +1,105 @@
+<ion-header [translucent]="true" mode="md">
+  <!-- <app-header [title]="'CASHMASH Wallet'"></app-header> -->
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <img src="assets/images/text-logo.png" class="header-img" slot="start">
+    <ion-title class="header-title">Wallet</ion-title>
+    <ion-buttons slot="end" class="mr-2" (click)="openMonthFilter()">
+      <ion-icon name="funnel" style="font-size: 20px;"></ion-icon>
+      <ion-icon name="help-circle" style="font-size: 25px;" class="mr-2" routerLink="/tour-guide/5"> </ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row m-1 d-flex align-items-center">
+    <div class="col-12 p-0">
+      <ion-card class="m-2 point-card">
+        <ion-card-header text-center class="d-flex align-items-center">
+          <ion-card-title class="text-white">Cashmash Coins</ion-card-title>
+          <ion-card-title class="text-white ml-auto mt-1 ">{{ this.pointsbalance }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </div>
+
+  <ion-segment [(ngModel)]="type">
+    <ion-segment-button value="0" (click)="filterPointItems('0')">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="1" (click)="filterPointItems('1')">
+      <ion-label>Received</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2" (click)="filterPointItems('2')">
+      <ion-label>Paid</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'0'">
+      <ion-item *ngFor="let item of filtereditems">
+        <ion-row class="w-100">
+          <ion-col size="2">
+            <div class="left-image">
+              <img src="assets/images/coin.png">
+            </div>
+          </ion-col>
+          <ion-col size="7">
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.description}}
+              </h2>
+              <p>{{item.trDate |date :  "dd-MM-y HH:mm"}}</p>
+            </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <span class="float-right clksent" *ngIf="item.subscriberFrom == smuserid"><b>-{{item.points}}</b></span>
+            <span class="float-right clkrecd" *ngIf="item.subscriberTo == smuserid"><b>+{{item.points}}</b></span>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'1'">
+      <ion-item *ngFor="let item of receiveditems">
+        <ion-row class="w-100">
+          <ion-col size="2">
+            <div class="left-image">
+              <img src="assets/images/coin.png">
+            </div>
+          </ion-col>
+          <ion-col size="7">
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.description}}
+              </h2>
+              <p>{{item.trDate |date :  "dd-MM-y HH:mm"}}</p>
+            </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <span class="float-right clkrecd"><b><span *ngIf="item.points != 0">+</span>{{item.points}}</b></span>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'2'">
+      <ion-item *ngFor="let item of paiditems">
+        <ion-row class="w-100">
+          <ion-col size="2">
+            <div class="left-image">
+              <img src="assets/images/coin.png">
+            </div>
+          </ion-col>
+          <ion-col size="7">
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.description}}
+              </h2>
+              <p>{{item.trDate |date :  "dd-MM-y HH:mm"}}</p>
+            </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <span class="float-right clksent"><b><span *ngIf="item.points != 0">-</span>{{item.points}}</b></span>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

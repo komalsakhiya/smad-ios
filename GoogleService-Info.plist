@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>219373142678-3b4vm3ec71t60q3h648kf6230pcqo3dt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.219373142678-3b4vm3ec71t60q3h648kf6230pcqo3dt</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>219373142678-bclnh0dhp8pbuibc1otoet3m43gpu4ir.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCTFwFyyIzC5unO7-vmW1T0MA1MH5Dv2-4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>219373142678</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>in.skillbiz.cashmash</string>
+	<key>PROJECT_ID</key>
+	<string>cashmash-88805</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cashmash-88805.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:219373142678:ios:1ad0381ab7c27321</string>
+	<key>DATABASE_URL</key>
+	<string>https://cashmash-88805.firebaseio.com</string>
+</dict>
+</plist>

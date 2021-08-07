@@ -1,0 +1,54 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Ticket #{{ticketId}}</ion-title>
+  </ion-toolbar>
+  <!-- <app-header [title]="ticketId"></app-header> -->
+</ion-header>
+<ion-content class="ion-padding">
+
+  <div>
+    <ion-card class="p-2 m-0 mb-3" *ngIf="ticketDetail">
+      <ion-row>
+        <ion-col size="8" class="p-0">
+          <p class="ticket-subject mb-1">#{{ticketDetail.ticketId}} {{ticketDetail.subject}}
+          </p>
+          <p>{{ticketDetail.ticketDate | timeAgo}}</p>
+        </ion-col>
+        <ion-col size="4">
+          <strong>
+            <p class="mb-0">{{ticketDetail.ticketType}}</p>
+          </strong>
+          <p class="mb-0">{{ticketDetail.ticketStage}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <div *ngIf="dataArr.length">
+    <ion-card *ngFor="let item of dataArr" [ngClass]="{'ml-5':item.conversationBy == 0,'mr-5':item.conversationBy != 0}">
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="2">
+            <p class="initial-name" *ngIf="item.conversationBy == 0">M</p>
+            <img *ngIf="item.conversationBy != 0" src="assets/images/logo.png">
+          </ion-col>
+          <ion-col size="10">
+            <p class="user-name">{{item.conversationBy == 0?'Me':'CashMash' }}</p>
+            <p>{{item.conversationDate | date:'MMM d, y, H:mm'}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          {{item.conversation}}
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    </div>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab-button (click)="replyTicket()">
+      <ion-icon name="arrow-redo-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div text-center *ngIf="!dataArr.length" class="no-data" style="height: 77%;">
+    <ion-label>No Data</ion-label>
+  </div>
+</ion-content>

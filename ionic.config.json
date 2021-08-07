@@ -1,0 +1,7 @@
+{
+  "name": "cashmashnew",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

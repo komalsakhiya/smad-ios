@@ -1,0 +1,23 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline" (click)="popback(this.categoryNameRecd)"></ion-icon>
+    </ion-buttons>
+    <ion-title>Category</ion-title>
+    <ion-button slot="end" class="book-new" fill="outline" (click)="popback('Category')">
+      Clear Filter
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-searchbar (ionInput)="getItems($event)" showCancelButton="true" animated="true" placeholder="Search Area"
+    class="p-0 pb-3" autocomplete="on" type="text" autocorrect="on"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of categorydata | order:'name'" (click)="popback(item)">
+      <div class="cat-img mr-2">
+        <img src="{{item.icon}}"  onerror="this.src='assets/images/logo.png'">
+      </div>
+      {{item.name}}
+    </ion-item>
+  </ion-list>
+</ion-content>

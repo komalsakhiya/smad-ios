@@ -1,0 +1,18 @@
+.initial-name{
+    background: var(--navy-color);
+    text-align: center;
+    padding: 1px 2px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+.user-name{
+    color: black;
+    font-size: 17px;
+    text-transform: capitalize;
+}
+ion-fab-button{
+    outline: none;
+    --background:var(--theme-color);
+}

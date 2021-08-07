@@ -1,0 +1,218 @@
+/*
+* App Global CSS
+* ----------------------------------------------------------------------------
+* Put style rules here that you want to apply globally. These styles are for
+* the entire app and not just one component. Additionally, this file can be
+* used as an entry point to import other CSS/Sass files to be included in the
+* output CSS.
+* For more information on global stylesheets, visit the documentation:
+* https://ionicframework.com/docs/layout/global-stylesheets
+*/
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+
+:root {
+  --btn-color: #fa7188;
+  --yello-color: #e9c46a;
+  --red-color: #eb5e55;
+  --light-red-color:#e28781;
+  --theme-color: #00923f;
+  --theme-color-light:#00923f24;
+  // --dark-green-color: #00786f;
+  --dark-green-color: #29166f;
+  --light-green-color: #00865d;
+  --navy-color: #006874;
+  --navy-dark: #00586b;
+  --dark-shade: #2f4858;
+  --dark-green: #449240;
+  --light-theme-color:#bbe0bb;
+  --light-blue-color:#29166f59;
+}
+
+ion-content,
+ion-header,
+ion-toolbar,
+ion-input,
+ion-select,
+ion-footer,
+ion-textarea {
+  // font-family: "Poppins", sans-serif !important;
+  font-family: "Open Sans", sans-serif !important;
+}
+.invalid-feedback {
+  display: block !important;
+}
+.toast-color {
+  --background: var(--theme-color);
+  color: white;
+  text-align: center;
+}
+
+.popupImage {
+  --max-height: 50%;
+}
+
+.popup {
+  height: auto;
+  --background: var(--theme-color);
+  color: white;
+  text-align: center;
+}
+
+ion-toolbar {
+  --background: var(--theme-color);
+  color: #ffffff;
+  
+  ion-back-button {
+    --color: #fff;
+  }
+  .text-icon{
+    width: 115px;
+    height: 24px;
+  }
+  ion-title{
+    padding-left: 0 !important;
+  }
+}
+ion-menu-button{
+  color: white;
+}
+ion-icon{
+  outline: none;
+}
+
+.no-data{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qr-code{
+  height: 265px;
+  img{
+    height: 100%;
+  }
+}
+.alert-title{
+  font-weight: bold !important;
+}
+.main-ads-card{
+  .image-section{
+    height: 150px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    img{
+      min-height: 100%;
+      min-width: 100%;
+      max-height: 100%;
+      max-height: 100%;
+    }
+  }
+  .number-section{
+    background: var(--light-green-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 6px 6px 10px 15px;
+    border-bottom-left-radius: 45px;
+    color: white;
+  }
+  ion-content{
+    --padding-start:10px !important;
+    --padding-end:10px !important;
+    
+  }
+  .cat-name{
+    font-weight: bold;
+    padding-left: 5px;
+    font-size: 19px;
+    margin-bottom: 8px;
+  }
+  .plus{
+    --background:var(--theme-color);
+  }
+  ion-fab-button{
+    --color:white
+  }
+  .cat1,.cat2{
+    --background: var(--yello-color);
+  }
+}
+.change-design-alert{
+  .alert-wrapper{
+    background: var(--light-theme-color);
+  }
+  .alert-message{
+    color: black;
+    padding: 12px 15px;
+  }
+  .alert-radio-group{
+    border-top: 1px solid var(--ion-color-step-150, grey);
+    border-bottom: 1px solid var(--ion-color-step-150, grey);
+    color: black;
+  }
+  .alert-radio-label{
+    color: var(--ion-color-step-850, #000);
+    white-space: normal;
+  }
+  .alert-button{
+    border-radius: 15px;
+    padding: 7px 15px;
+    background: var(--dark-green-color);
+    color: white;
+    text-transform: none;
+  }
+  .alert-button-role-cancel{
+    background: var(--red-color);
+  }
+  .alert-head{
+    padding: 12px;
+  }
+}
+.recharge-alert{
+  .alert-wrapper{
+    --min-width:285px  !important;
+  }
+}
+.my-ads-modal{
+  .book-new{
+    margin-right: 10px;
+    text-transform: none;
+    --border-radius: 25px;
+    --color: #fff;
+  }
+  ion-item{
+    --background:var(--light-theme-color);
+    margin-bottom: 7px;
+    border-radius: 10px;
+  }
+}
+.voucher-input-alert{
+  .alert-input-group{
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+.header-img{
+  height: 30px;
+}

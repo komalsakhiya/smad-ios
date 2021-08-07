@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "219373142678",
+    "firebase_url": "https://cashmash-88805.firebaseio.com",
+    "project_id": "cashmash-88805",
+    "storage_bucket": "cashmash-88805.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219373142678:android:1ad0381ab7c27321",
+        "android_client_info": {
+          "package_name": "in.skillbiz.cashmash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219373142678-chfb2shbh1vii65e3cetf69ngnrvqhus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNXuC8n9m7c7irbZrrwXvkw4ZojGeZl48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219373142678-chfb2shbh1vii65e3cetf69ngnrvqhus.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "219373142678-3b4vm3ec71t60q3h648kf6230pcqo3dt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.skillbiz.cashmash"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

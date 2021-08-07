@@ -1,0 +1,24 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>{{ 'Share' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let image of imgArr">
+        <div class="slider-image-section">
+          <img [src]="image">
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="action-button ion-padding">
+    <ion-button size=large class="login-button" (click)="shareApp()">Share & Earn
+    </ion-button>
+  </div>
+
+</ion-content>

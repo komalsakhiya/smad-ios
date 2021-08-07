@@ -1,0 +1,24 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start" *ngIf="!isFirstTime"></ion-back-button>
+    <ion-buttons (click)="backToHome()" slot="start" *ngIf="isFirstTime">
+      <ion-icon name="home-outline" style="font-size: 25px;" class="ml-2"></ion-icon>
+    </ion-buttons>
+    <ion-title>{{ sliderName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts" class="h-100" *ngIf="tourData && tourData.length">
+    <ion-slide *ngFor="let image of tourData">
+      <div class="slider-image-section">
+        <img [src]="image.sliderImage" *ngIf="!image.sliderVideo">
+        <iframe [class.thumbnail]="thumbnail" [src]="getUrl(image.sliderVideo)" width="100%" height="60%" frameborder="0"
+          webkitallowfullscreen mozallowfullscreen allowfullscreen *ngIf="image.sliderVideo" style="margin-top: 87px !important;"></iframe>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <!-- <div text-center *ngIf="!tourData.length" class="no-data">
+    <ion-label>No Data</ion-label>
+  </div> -->
+</ion-content>

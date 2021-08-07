@@ -1,0 +1,185 @@
+<ion-header [translucent]="true" mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>My Ads</ion-title>
+    <ion-button slot="end" class="book-new" fill="outline" (click)="openWithCordovaBrowser()">
+      <ion-icon name="add-outline"></ion-icon>Book new Ad
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ads-card">
+  <ion-row class="button-section mx-2">
+    <ion-col size="7">
+      <ion-button class="update-location w-100" (click)="openOfflineRechargeModel()">
+        Offline Ad Booking
+      </ion-button>
+    </ion-col>
+    <ion-col size="5">
+      <ion-button class="update-location w-100" (click)="recharge()">
+        Recharge
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="myads" *ngIf="this.success == 1">
+    <ion-card *ngFor="let item of items">
+      <div class="d-flex">
+        <!-- <ion-col size="4"> -->
+        <div>
+          <div class="ads-image">
+            <div class="designer-data-section">
+              <img src="{{item.adsImage}}" *ngIf="item.adsImage !== 'noimage'"
+                (click)="showImage($event,item.adsImage)" />
+              <!--   *ngIf="item.active == '2' && (item.stageId>0 && item.stageId<5)"-->
+              <div class="content p-3" [ngClass]="{'designer-with-img':item.adsImage !== 'noimage'}" *ngIf="item.active == '2' && (item.stageId>0 && item.stageId<5)">
+                <ion-card-title>Designer Name: </ion-card-title>
+                <ion-card-subtitle>{{item.designer_name}}</ion-card-subtitle>
+                <div class="mt-2">
+                  <a href="tel:{{'item.designer_mobile'}}">
+                    <ion-icon name="call" size="large" class="m-2"></ion-icon>
+                  </a>
+                  <ion-icon name="logo-whatsapp" (click)="shareOnWhatsapp(item)" size="large" class="m-2"></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="paused" *ngIf="item.active == 3">Paused</p>
+        </div>
+        <!-- </ion-col> -->
+        <!-- <ion-col size="8"> -->
+        <div class="button-section">
+          <ion-card-header class="py-2" *ngIf="item.active == '2'">
+            <ion-card-title *ngIf="item.active == '2'">
+              <span>New Design Request</span>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="p-1">
+            <!-- <ion-row>
+              <ion-col size="9"> -->
+            <ion-button class="update-location mr-2" *ngIf="(item.active == '1' || item.active == '3')"
+              (click)="presentConfirm(3, item.adsId)">Update Location <ion-icon name="location-outline"></ion-icon>
+            </ion-button>
+            <ion-button class="update-location" *ngIf="item.active == '2' && item.stageId == '3'"
+              (click)="approve(4, item)">
+              Request Changes
+            </ion-button>
+            <!-- </ion-col>
+              <ion-col size="3"> -->
+            <div>
+              <ion-button expand="block" class="update-location" *ngIf="item.active == '1'"
+                (click)="presentConfirm(1, item.adsId)">
+                Pause Ad
+                <!-- <ion-icon name="pause"></ion-icon> -->
+              </ion-button>
+              <ion-button expand="block" class="update-location" *ngIf="item.active == '3'"
+                (click)="presentConfirm(2, item.adsId)">
+                Resume Ad
+                <!-- <ion-icon name="play-outline"></ion-icon> -->
+              </ion-button>
+              <ion-button expand="block" class="update-location" *ngIf="item.active == '2' && item.stageId == '3'"
+                (click)="approve(5, item)">
+                Approve
+                <!-- <ion-icon name="checkmark-circle-outline"></ion-icon> -->
+              </ion-button>
+            </div>
+            <!-- </ion-col>
+            </ion-row> -->
+            <!-- <ion-row> -->
+            <!-- <ion-col size="9"> -->
+            <ion-button class="update-location" (click)="displayArea(item.areaName)">
+              <!-- *ngIf="(item.active == '1' || item.active == '3') && (item.new_adsId == '0')" -->
+              Ad Areas
+            </ion-button>
+            <ion-button class="update-location"
+              *ngIf="(item.active == '1' || item.active == '3') && (item.new_adsId == '0')"
+              (click)="designChange(item.adsId, item.premiumImage, item.bookingId)">
+              <!-- *ngIf="(item.active == '1' || item.active == '3') && (item.new_adsId == '0')" -->
+              Design Change <ion-icon name="color-wand-outline"></ion-icon>
+            </ion-button>
+            <!-- </ion-col>
+              <ion-col size="3"> -->
+            <!-- <div class="row mr-0">
+              <div class="col-6 pr-1"> -->
+            <ion-button fill="outline" class="outline-btn" expand="block"
+              (click)="changeAdTiming(item.bookingId,timeData[+item.cmPointsPlus - 1].timeSeconds)">
+              <!-- <ion-icon name="time-outline"></ion-icon>&nbsp;  -->
+              {{timeData[+item.cmPointsPlus - 1].timeSeconds}} seconds
+            </ion-button>
+            <!-- </div> -->
+            <!-- <div class="col-6 p-0"> -->
+            <div class="row m-0">
+              <div class="col-6 px-0 pl-1 ">
+                <ion-button fill="outline" class="outline-btn" expand="block"
+                  (click)="viewCount(item.adsId,item.view_count)">
+                  <!-- <ion-icon name="time-outline"></ion-icon>&nbsp;  -->
+                  View: {{item.view_count}}
+                </ion-button>
+              </div>
+              <div class="col-6 px-0 pl-1 ">
+                <ion-button fill="outline" class="outline-btn" expand="block" (click)="openEnquiry(item.bookingId)">
+                  <!-- <ion-icon name="time-outline"></ion-icon>&nbsp;  -->
+                  Enquiry: {{item.enquiry_count}}
+                </ion-button>
+              </div>
+            </div>
+
+            <!-- </div>
+            </div> -->
+            <!-- *ngIf="(item.active == '1' || item.active == '3') && (item.new_adsId == '0')" -->
+            <!-- </ion-col>
+            </ion-row> -->
+            <!-- <ion-row> -->
+            <!-- <ion-col size="12"> -->
+            <!-- <ion-button fill="outline" class="outline-btn">
+              Select Area
+            </ion-button> -->
+            <button fill="outline" class="outline-btn stage-btn" (click)="openStages(item.stageId)">
+              <ion-icon name="hand-right-outline" class="mr-2"></ion-icon>Ad Status
+              <p>({{stageitems[item.stageId].stageName}})</p>
+            </button>
+            <!-- </ion-col>
+            </ion-row> -->
+
+          </ion-card-content>
+        </div>
+        <!-- </ion-col> -->
+      </div>
+      <div>
+        <ion-row class="px-2 status-code text-center d-flex align-items-center"
+          [ngClass]="{'no-status':(item.active != 1 && item.active != 0)}">
+          <ion-col size="4">
+            <div class="info">
+              <p class="mb-0">Booking Id: <span> {{item.bookingId}}</span></p>
+            </div>
+          </ion-col>
+          <ion-col size="4">
+            <div class="info">
+              <p class="mb-0">Ad Id: <span> {{item.adsId}}</span></p>
+            </div>
+          </ion-col>
+
+          <ion-col size="4" *ngIf="item.active == 1 ||item.active == 0 ">
+            <ion-chip class="text-white" *ngIf="item.active == 1" style="background: var(--theme-color);">
+              <ion-label>Active</ion-label>
+            </ion-chip>
+            <ion-chip class="text-white" *ngIf="item.active == 0" style="background: var(--red-color)">
+              <ion-label>Inactive</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-card>
+  </div>
+  <div text-center *ngIf="this.success !== 1 || !items.length" class="no-data">
+    <ion-label>No Ads</ion-label>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col no-padding class="bottom-button text-white p-2 mr-1 d-flex align-items-center justify-content-center" routerLink="/tour-guide/3">
+      <ion-icon name="help-circle" style="font-size: 25px;"></ion-icon> Help
+    </ion-col>
+    <ion-col no-padding class="bottom-button text-center text-white p-2" (click)="addTicket()">
+      <span>Support</span>
+    </ion-col>
+  </ion-row>
+</ion-footer>

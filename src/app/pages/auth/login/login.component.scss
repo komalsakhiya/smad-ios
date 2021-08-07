@@ -1,0 +1,95 @@
+ion-content{
+    // --background: url("../../../../assets/images/bg.jpeg") no-repeat center  center / cover;
+    --background:var(--theme-color)
+}
+.login-section{
+    height: 78vh;
+    width: 100%;
+    max-width: 100%;
+    background: white;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    margin: auto;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    .heading{
+        h1{
+            font-size: 1.2rem;
+            font-weight: bolder;
+        }
+        p{
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #7b7b7b;
+        }
+    }
+    .login-form{
+        .form-input{
+            position: relative;
+            margin-bottom: 10px;
+            ion-item::part(native){
+                padding-left: 0;
+            }
+            ion-item{
+                --highlight-color-focused: none;
+            }
+            ion-icon{
+                position: absolute;
+                top: 30px;
+                z-index: 2;
+                font-size: 20px;
+                left: 5px;
+            }
+            ion-label{
+                position: absolute;
+                margin-left: 35px;
+                font-weight: bolder;
+                font-size: 16px;
+                top: 3px;
+            }
+            ion-input{
+                font-size: 0.9rem;
+                --padding-start:36px;
+                --padding-top:36px;
+                color: #7b7b7b;
+            }
+        }
+    }
+    .action-button{
+        text-align: center;
+        ion-button{
+            height: 45px;
+            font-size: 16px;
+            text-transform: none;
+        }
+        .login-button{
+            width: 100%;
+            font-weight: bold;
+            --background:var(--dark-green-color)
+        }
+        .signup-button{
+            width: 100%;
+            --color:#000000;
+            margin-top: 30px;
+            font-weight: bold;
+            --border-color:#b4b4b4;
+        }
+        .links-section{
+            span{
+                color: black;
+                font-weight: 600;
+                outline: none;
+            }
+        }
+    }
+}
+.logo-images{
+    .logo{
+        height: 67px;
+    }
+    .text-logo{
+        height: 30px;
+    }
+}

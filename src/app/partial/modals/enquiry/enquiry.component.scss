@@ -1,0 +1,11 @@
+a{
+    color: black !important;
+    font-size: 23px;
+}
+ion-item{
+    --padding-top: 10px;
+    --padding-bottom: 7px;
+    --border-color: transparent;
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,20 @@
+<ion-header class="my-ads-modal" mode="md">
+  <ion-toolbar>
+    <ion-button slot="end" class="book-new" fill="outline" (click)="closeModal()">
+      Close
+    </ion-button>
+    <ion-title>Stages</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding my-ads-modal">
+  <ion-list>
+    <!-- <li></li> -->
+    <div *ngFor="let item of stages |order:'stageOrder'" class="d-flex align-items-center">
+      <li [ngStyle]="{'background':item.stageOrder<=stageId?'var(--theme-color)':'var(--light-theme-color)'}"></li>
+      <div class="w-100 mb-0 stage-card"
+        [ngStyle]="{'background':item.stageOrder<=stageId?'var(--light-theme-color)':'var(--light-blue-color)'}">
+        <p class="mb-0">{{item.stageName}}</p>
+      </div>
+    </div>
+  </ion-list>
+</ion-content>

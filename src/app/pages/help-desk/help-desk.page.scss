@@ -1,0 +1,46 @@
+.new-ticket{
+    margin-right: 10px;
+    text-transform: none;
+    --border-radius: 25px;
+    --color: #fff;
+    font-size: 13px;
+    ion-icon{
+      margin-right: 5px;
+    }
+  }
+.ticket-status{
+    --border-radius: 25px;
+    --color: #000;
+    border: 1px solid;
+    border-radius: 25px;
+    padding: 1px;
+}
+.closed{
+    border-color: var(--theme-color);
+    color: var(--theme-color);
+}
+.rejected{
+    border-color: var(--red-color);
+    color: var(--red-color);
+}
+.open{
+    border-color: orange;
+    color: orange;
+}
+.all{
+    border-color: var(--dark-green-color);
+    color: var(--dark-green-color);
+}
+.ticket-subject{
+    font-size: 17px;
+    color: black;
+}
+ion-card{
+    outline: none;
+}
+ion-segment-button { 
+    --border-color: var(--dark-green-color);
+    --color-checked: var(--dark-green-color);
+    --background-checked:var(--light-theme-color);
+    --border-radius: 4px;
+}

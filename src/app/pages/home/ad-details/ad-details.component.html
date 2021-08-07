@@ -1,0 +1,84 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="backpress()">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <img src='assets/images/text-logo.png' class="text-icon">
+    <div *ngIf="coinArr.length"  slot="end" class="mr-2">
+      <img [src]="img" *ngFor="let img of coinArr" style="height: 20px;margin: 1px;">
+    </div>
+    <ion-badge color="secondary" slot="end" *ngIf="this.addetails.timeSeconds > '0' && this.addetails.points > 0">
+      {{timer.displayTime}}</ion-badge>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngIf="this.addetails.videoFile != 'noimage'">
+      <ion-col text-center>
+        <ion-card>
+          <ion-card-content>
+            <iframe [src]="this.videoFileSafe"></iframe>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-card>
+          <ion-card-content>
+            <img src="{{this.addetails.adsImage}}" (click)="fullimage(this.addetails.adsImage)">
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row *ngIf="this.addetails.detail_sts != '0' && addetails.lat > '0' && addetails.lang > '0'">
+      <ion-col text-center>
+        <ion-card>
+          <ion-card-content >
+            <agm-map [latitude]="+this.addetails.lat " [longitude]="+this.addetails.lat" class="w-100" style="height: 165px;" [scrollwheel]="null" [gestureHandling]="none" [mapDraggable]="false" [maxZoom]="0">
+              <agm-marker [latitude]="+this.addetails.lat " [longitude]="+this.addetails.lang " (markerClick)="openMap(this.addetails.lat,this.addetails.lang)">
+              </agm-marker>
+            </agm-map>
+            <iframe [src]="this.mapurlSafe" allowfullscreen></iframe>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row *ngIf="this.addetails.website && this.addetails.website != 'noimage' ">
+      <ion-col>
+        <ion-button expand="block" (click)="openWithCordovaBrowser()" style="--background:var(--dark-green-color)">Visit
+          Website</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row class="text-center">
+      <ion-col text-center *ngIf="this.addetails.detail_sts != '0' && addetails.lat > '0' && addetails.lang > '0'">
+        <!-- <a href="http://www.google.com/maps/place/{{this.addetails.lat}},{{this.addetails.lang}}"> -->
+        <ion-icon name="location" size="large" (click)="openMap(this.addetails.lat,this.addetails.lang)"></ion-icon>
+        <!-- </a> -->
+      </ion-col>
+      <ion-col text-center *ngIf="this.addetails.advMobile != '0'">
+        <ion-icon name="call" (click)="call()" size="large"></ion-icon>
+      </ion-col>
+      <ion-col *ngIf="this.addetails.enquiry != '0'" text-center>
+        <ion-icon name="mail" (click)="navigatetoenqpage()" size="large"></ion-icon>
+      </ion-col>
+      <ion-col *ngIf="this.addetails.fav_sts == '0'" text-center>
+        <ion-icon name="heart" (click)="favchange(1)" size="large"></ion-icon>
+      </ion-col>
+      <ion-col *ngIf="this.addetails.fav_sts > '0'" text-center>
+        <ion-icon name="heart" (click)="favchange(0)" style="color: var(--red-color);" size="large">
+        </ion-icon>
+      </ion-col>
+      <ion-col text-center *ngIf="this.addetails.advMobile2">
+        <ion-icon name="logo-whatsapp" (click)="shareOnWhatsapp()" size="large"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

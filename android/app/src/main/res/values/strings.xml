@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">cashmash</string>
+    <string name="title_activity_main">cashmash</string>
+    <string name="package_name">in.skillbiz.cashmash</string>
+    <string name="custom_url_scheme">in.skillbiz.cashmash</string>
+</resources>

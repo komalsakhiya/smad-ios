@@ -1,0 +1,132 @@
+.image-section{
+    height: 220px;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    img{
+        min-height: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        min-height: 100%;
+        object-fit: cover;
+    }
+}
+
+.slider-image-section{
+    height: 150px;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    img{
+        min-height: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        min-height: 100%;
+        object-fit: cover;
+    }
+}
+.content-section{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    color: white;
+    background: rgb(61 68 76 / 60%);
+    padding: 10px 0;
+    right: 0;
+    left: 0;
+    ion-button{
+        --border-color:white;
+        text-transform: none;
+    } 
+    
+}
+.price-text{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 25px;
+    color: var(--theme-color);
+    font-weight: 900;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+.paused {
+    position: absolute;
+    top: 18px;
+    transform: rotate(-45deg);
+    background: var(--btn-color);
+    padding: 0 40px;
+    left: -44px;
+    color: #fff;
+    font-size: 12px;
+}
+ion-card-content,a{
+    color: black;
+    i{
+        font-size: 20px;
+    }
+    ion-icon{
+        font-size: 25px;
+    }
+    .few-left{
+        color: var(--theme-color);
+        font-size: 17px;
+        font-weight: bold;
+    }
+}
+.redeem-btn{
+    margin-right: -25px !important;
+}
+ion-slides{
+    margin: 0 8px;
+    border-radius: 4px;
+    --bullet-background-active:var(--theme-color)
+}
+.plus {
+    --background: var(--theme-color);
+}
+hr{
+    background: grey;
+}
+.adress{
+    color: black;
+    p{
+        font-size: 17px;
+    }
+}
+.book-new{
+    margin-right: 10px;
+    text-transform: none;
+    --border-radius: 25px;
+    --color: var(--theme-color);
+    font-size: 14px;
+    --border-color: var(--theme-color);
+}
+
+.new-ticket{
+    margin-right: 10px;
+    text-transform: none;
+    --border-radius: 25px;
+    --color: #fff;
+    font-size: 13px;
+    ion-icon{
+      margin-right: 5px;
+    }
+  }
+  .redeem-btn{
+    margin-right: -25px !important;
+}
+.bottom-button{
+    background:  var(--theme-color);
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    outline: none;
+    ::before{
+        background-image: none;
+    }
+    &.footer-md::before {
+        background-image: none;
+    }
+  }

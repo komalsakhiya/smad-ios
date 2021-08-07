@@ -1,0 +1,38 @@
+<ion-header [translucent]="true" mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="partner-list"></ion-back-button>
+    <ion-title>Pay CM Coin </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="payCMForm">
+    <div class="login-form ion-padding pt-0 mt-3">
+      <div class="form-input">
+        <ion-item>
+          <ion-label position="floating">Mobile No.</ion-label>
+          <ion-input type="number" formControlName="tomobileno"></ion-input>
+        </ion-item>
+        <div *ngIf="isControlHasError('tomobileno','required')" class="invalid-feedback">
+          <span>Required field.</span>
+        </div>
+        <div *ngIf="isControlHasError('tomobileno','pattern')" class="invalid-feedback">
+          <span>Please enter valid name.</span>
+        </div>
+      </div>
+      <div class="form-input">
+        <ion-item>
+          <ion-label position="floating">Points</ion-label>
+          <ion-input type="number" formControlName="cmpoints"></ion-input>
+        </ion-item>
+        <div *ngIf="isControlHasError('cmpoints','required')" class="invalid-feedback">
+          <span>Required field.</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-button ion-padding">
+      <ion-button size=large class="login-button" (click)="sendCMCoin(payCMForm)">Pay CM Coin
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

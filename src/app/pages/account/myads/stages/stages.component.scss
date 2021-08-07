@@ -1,0 +1,25 @@
+li{
+    position: relative;
+    width: 6px;
+    background-color: var(--theme-color);
+    list-style-type: none;
+    height: 70px;
+    margin: 0 15px;
+}
+li::after {
+    content: '';
+    position: absolute;
+    background: var(--dark-green-color);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    left:50%;
+    transform: translateX(-50%);
+    bottom: 0%;
+}
+.stage-card{
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: -20px !important;
+}
+        

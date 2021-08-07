@@ -1,0 +1,137 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end"> -->
+      <ion-button  class="book-new" fill="outline" (click)="recharge()" slot="end">
+        <ion-icon name="add-outline"></ion-icon>Recharge
+      </ion-button>
+      <ion-icon name="help-circle" style="font-size: 25px;" class="mr-2" slot="end" routerLink="/tour-guide/4"> </ion-icon>
+    <!-- </ion-buttons> -->
+    <ion-title >Click Wallet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="mt-2 mx-3 recharge-btn">
+    <ion-button class="w-100" (click)="openOfflineRechargeModel()">Offline Recharge</ion-button>
+  </div>
+  <div class="button-section">
+    <div class="row m-0 borders">
+      <div class="col-6 right-border">
+        <div class="py-2">
+          <p>Clicks Balance</p>
+          <p>{{this.clickbalance}}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="py-2">
+          <p>Total Recharge</p>
+          <p>{{this.clickrecharge}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="row m-0">
+      <div class="col-6 right-border">
+        <div class="py-2">
+          <p>Clicks spent on Ad Designing</p>
+          <p>{{this.clickdesigns}}</p>
+        </div>
+      </div>
+      <div class="col-6 ">
+        <div class="py-2">
+          <p>Clicks spent on Ad Views</p>
+          <p>{{this.clickviews}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <ion-segment [(ngModel)]="type">
+    <ion-segment-button value="0" (click)="filterItems('0')">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="1" (click)="filterItems('1')">
+      <ion-label>Received</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2" (click)="filterItems('2')">
+      <ion-label>Paid</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'0'">
+      <ion-item *ngFor="let item of filtereditems">
+        <ion-row class="w-100">
+          <ion-col size="2">
+            <div class="left-image">
+              <img src="assets/images/coin.png">
+            </div>
+          </ion-col>
+          <ion-col size="7">
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.description}}
+              </h2>
+              <p>{{item.transactionDate |date : "dd-MM-y HH:mm"}}</p>
+            </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <span class="float-right clksent" *ngIf="item.clicks.charAt(0) == '-'"><b>{{item.clicks}}</b></span>
+            <span class="float-right clkrecd" *ngIf="item.clicks.charAt(0) != '-'"><b><span
+                  *ngIf="item.clicks != 0">+</span>{{item.clicks}}</b></span>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'1'">
+      <ion-item *ngFor="let item of receiveditems">
+        <ion-row class="w-100">
+          <ion-col size="2">
+            <div class="left-image">
+              <img src="assets/images/coin.png">
+            </div>
+          </ion-col>
+          <ion-col size="7">
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.description}}
+              </h2>
+              <p>{{item.transactionDate |date : "dd-MM-y HH:mm"}}</p>
+            </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <span class="float-right clkrecd"><b><span *ngIf="item.clicks != 0">+</span>{{item.clicks}}</b></span>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'2'">
+      <ion-item *ngFor="let item of paiditems">
+        <ion-row class="w-100">
+          <ion-col size="2">
+            <div class="left-image">
+              <img src="assets/images/coin.png">
+            </div>
+          </ion-col>
+          <ion-col size="7">
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.description}}
+              </h2>
+              <p>{{item.transactionDate |date : "dd-MM-y HH:mm"}}</p>
+            </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <span class="float-right clksent"><b>{{item.clicks}}</b></span>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="filtereditems && filtereditems.length">
+    <ion-fab-button class="plus" (click)="openMonthFilter()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-header [translucent]="true" mode="md">
+  <!-- <app-header [title]="'CASHMASH Partner'"></app-header> -->
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Shop & Earn</ion-title>
+    <ion-icon name="help-circle" style="font-size: 25px;" class="mr-2" slot="end" routerLink="/tour-guide/7"> </ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div text-center *ngIf="!vouchers.length" class="no-data">
+    <ion-label>No Vouchers</ion-label>
+  </div>
+  <div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let image of imgArr">
+        <div class="slider-image-section">
+          <img [src]="image.sliderImage">
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="d-flex align-items-center mb-2">
+    <div *ngIf="this.categoryNameRecd != 'Category'" class="cat-name d-flex align-items-center">
+      <ion-icon name="list-outline"></ion-icon>
+      <p class="mb-0 ml-2">{{this.categoryNameRecd}}</p>
+    </div>
+    <ion-button slot="end" class="book-new ml-auto" fill="outline" (click)="clearFilter()" *ngIf="isFilterd">
+      Clear Filter
+    </ion-button>
+  </div>
+  <div *ngIf="vouchers.length" class="px-3">
+    <ion-card *ngFor="let voucher of vouchers" class="mx-0">
+      <div style="position: relative;">
+        <div class="image-section">
+          <img [src]="voucher.mainImage">
+        </div>
+        <p class="paused" *ngIf="voucher.ishotFlashing == 1">Hot Flashing</p>
+        <p class="mb-0 price-text p-2 5">{{parseFloatPercentage(voucher.cashbackPercent)}}%
+          <span style="font-size: 12px;">Cashback</span>
+        </p>
+        <div class="content-section">
+          <p class="mb-0 pb-1">{{voucher.punchLine}}</p>
+        </div>
+      </div>
+      <ion-card-content>
+        <ion-row class="text-center">
+          <ion-col size="3">
+            <i class="fa fa-address-card mt-1" aria-hidden="true" (click)="openAddress('Address',voucher.address)"></i>
+          </ion-col>
+          <ion-col size="3">
+            <a href="http://www.google.com/maps/place/{{voucher.latitude}},{{voucher.longitude}}">
+              <ion-icon name="location"></ion-icon>
+            </a>
+          </ion-col>
+          <ion-col size="3">
+            <ion-icon name="call" (click)="call(voucher)"></ion-icon>
+          </ion-col>
+          <ion-col size="3">
+            <i class="fa fa-gavel" aria-hidden="true" style="font-size: 25px;"
+              (click)="openAddress('Term & Condition',voucher.tnc)"></i>
+          </ion-col>
+        </ion-row>
+        <hr class="m-0" *ngIf="voucher.leftCount">
+        <ion-row *ngIf="voucher.leftCount">
+          <p *ngIf="voucher.leftCount" class="mb-0 mt-1 few-left">Only Few Left: {{voucher.leftCount}}</p>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="filterCategory()" style="--background: {{this.pointcolor}};">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

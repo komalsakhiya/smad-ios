@@ -1,0 +1,33 @@
+<ion-header [translucent]="true" mode="md">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="home"></ion-back-button>
+    <ion-title>Enquiry</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="enquiryForm">
+    <div class="login-form ion-padding pt-0 mt-3">
+      <ion-item *ngIf="this.businessId == '0'">
+        <ion-label class="select-label">Select</ion-label>
+        <ion-select formControlName="enqtext1">
+          <ion-select-option *ngFor="let item of items" value="{{item.optionName}}">{{item.optionName}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="form-input">
+        <ion-item>
+          <ion-label position="floating">Message</ion-label>
+          <ion-input type="text" formControlName="enqtext"></ion-input>
+        </ion-item>
+        <div *ngIf="isControlHasError('enqtext','required')" class="invalid-feedback">
+          <span>Required field.</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-button ion-padding">
+      <ion-button size=large class="login-button" (click)="sendEnquiry(enquiryForm)">Send Enquiry
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
